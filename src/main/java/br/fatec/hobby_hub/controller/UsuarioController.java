@@ -1,16 +1,20 @@
 package br.fatec.hobby_hub.controller;
 
+import br.fatec.hobby_hub.dto.EsqueciSenhaDTO;
 import br.fatec.hobby_hub.dto.LoginDTO;
+import br.fatec.hobby_hub.dto.RedefinirSenhaDTO;
 import br.fatec.hobby_hub.dto.UsuarioAtualizacaoDTO;
 import br.fatec.hobby_hub.dto.UsuarioCadastroDTO;
 import br.fatec.hobby_hub.dto.UsuarioRespostaDTO;
 import br.fatec.hobby_hub.services.UsuarioService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -54,4 +58,17 @@ public class UsuarioController {
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
     }
+
+    @PostMapping("/esqueci-senha")
+    public ResponseEntity<Map<String, String>> esqueciSenha(@RequestBody @Valid EsqueciSenhaDTO dto) {
+        service.solicitarCodigoRecuperacao(dto.email());
+        return ResponseEntity.ok(Map.of("mensagem", "Código de recuperação enviado para o e-mail informado."));
+    }
+
+    @PostMapping("/redefinir-senha")
+    public ResponseEntity<Map<String, String>> redefinirSenha(@RequestBody @Valid RedefinirSenhaDTO dto) {
+        service.redefinirSenhaComCodigo(dto);
+        return ResponseEntity.ok(Map.of("mensagem", "Senha alterada com sucesso!"));
+    }
+
 }
