@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "tb_usuarios")
 @Getter
@@ -38,4 +40,10 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private StatusUsuario status;
+
+    @Column(length = 6)
+    private String codigoRecuperacao;
+
+
+    private LocalDateTime codigoExpiracao;
 }
