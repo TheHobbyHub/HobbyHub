@@ -29,6 +29,7 @@ public class UsuarioService {
 
         Usuario usuario = new Usuario();
         usuario.setNome(dto.nome());
+        usuario.setSobrenome(dto.sobrenome());
         usuario.setEmail(dto.email());
         usuario.setCpf(dto.cpf());
         usuario.setTelefone(dto.telefone());

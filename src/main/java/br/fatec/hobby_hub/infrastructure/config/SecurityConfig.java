@@ -1,4 +1,4 @@
-package br.fatec.hobby_hub.config;
+package br.fatec.hobby_hub.infrastructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

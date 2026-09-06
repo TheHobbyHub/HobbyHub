@@ -6,6 +6,7 @@ import br.fatec.hobby_hub.infrastructure.entity.Usuario;
 public record UsuarioRespostaDTO(
         Long id,
         String nome,
+        String sobrenome,
         String email,
         String cpf,
         String telefone,
@@ -15,6 +16,7 @@ public record UsuarioRespostaDTO(
         this(
                 usuario.getId(),
                 usuario.getNome(),
+                usuario.getSobrenome(),
                 usuario.getEmail(),
                 usuario.getCpf(),
                 usuario.getTelefone(),
